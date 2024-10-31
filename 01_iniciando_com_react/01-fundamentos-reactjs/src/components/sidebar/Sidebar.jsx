@@ -3,13 +3,15 @@ import cover from '../../assets/bellagio.jpg';
 import profile from '../../assets/profile.jpeg';
 
 import {PencilLine} from "@phosphor-icons/react";
+import {Avatar} from "../avatar/Avatar";
 
 export function Sidebar() {
     return (
         <aside className={styles.sidebar}>
             <img src={cover} className={styles.cover} alt="Cover"/>
+
             <div className={styles.profile}>
-                <img src={profile} className={styles.avatar} alt="profile"/>
+                <Avatar src={profile} />
                 <strong>Lucas Inocencio</strong>
                 <span>iOS Developer</span>
             </div>
