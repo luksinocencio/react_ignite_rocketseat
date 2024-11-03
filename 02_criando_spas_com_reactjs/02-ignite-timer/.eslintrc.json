@@ -2,6 +2,21 @@
   "extends": "@rocketseat/eslint-config/react",
   "rules": {
     "no-unused-vars": "off",
-    "import/newline-after-import": "error"
+    "import/newline-after-import": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "single",
+          "multiple"
+        ],
+        "allowSeparatedGroups": false
+      }
+    ]
   }
 }
