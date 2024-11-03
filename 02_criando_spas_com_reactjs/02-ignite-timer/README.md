@@ -33,12 +33,12 @@ export default tseslint.config({
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
 ```js
-// .eslintrc.json
+// eslint.config.js
 import react from 'eslint-plugin-react'
 
 export default tseslint.config({
   // Set the react version
-  settings: {react: {version: '18.3'}},
+  settings: { react: { version: '18.3' } },
   plugins: {
     // Add the react plugin
     react,
