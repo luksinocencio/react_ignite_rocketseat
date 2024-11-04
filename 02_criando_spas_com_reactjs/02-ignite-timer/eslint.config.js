@@ -53,6 +53,7 @@ export default tseslint
             },
           },
         ],
+        '@typescript-eslint/ no-explicit-any': 0,
       },
     },
   )
