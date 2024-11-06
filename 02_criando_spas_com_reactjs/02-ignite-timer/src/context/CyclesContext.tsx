@@ -39,35 +39,49 @@ interface CycleState {
 export function CyclesContextProvider({ children }: CyclesContextProviderProps) {
   const [cyclesState, dispatch] = useReducer(
     (state: CycleState, action: any) => {
-      if (action.type === 'ADD_NEW_CYCLE') {
-        return {
-          ...state,
-          cycles: [...state.cycles, action.payload.newCycle],
-          actionCycleId: action.payload.newCycle.id,
+      switch (action.type) {
+        case 'ADD_NEW_CYCLE': {
+          return {
+            ...state,
+            cycles: [...state.cycles, action.payload.newCycle],
+            actionCycleId: action.payload.newCycle.id,
+          }
         }
-      }
-
-      if (action.type === 'INTERRUPT_CURRENT_CYCLE') {
-        return {
-          ...state,
-          cycles: state.cycles.map((cycle) => {
-            if (cycle.id === state.activeCycleId) {
-              return {
-                ...cycle,
-                interruptedDate: new Date(),
+        case 'INTERRUPT_CURRENT_CYCLE': {
+          return {
+            ...state,
+            cycles: state.cycles.map((cycle) => {
+              if (cycle.id === state.activeCycleId) {
+                return {
+                  ...cycle,
+                  interruptedDate: new Date(),
+                }
+              } else {
+                return cycle
               }
-            } else {
-              return cycle
-            }
-          }),
-          actionCycleId: null,
+            }),
+            actionCycleId: null,
+          }
         }
+        case 'MARK_CURRENT_CYCLE_AS_FINISHED': {
+          return {
+            ...state,
+            cycles: state.cycles.map((cycle) => {
+              if (cycle.id === state.activeCycleId) {
+                return {
+                  ...cycle,
+                  finishedDate: new Date(),
+                }
+              } else {
+                return cycle
+              }
+            }),
+            actionCycleId: null,
+          }
+        }
+        default:
+          return state
       }
-
-      if (action.type === 'MARK_CURRENT_CYCLE_AS_FINISHED') {
-      }
-
-      return state
     },
     {
       cycles: [],
