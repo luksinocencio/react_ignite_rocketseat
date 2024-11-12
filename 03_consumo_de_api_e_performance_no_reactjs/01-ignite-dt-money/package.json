@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev:server": "json-server --watch server.json --port 3333"
+    "dev:server": "json-server --watch server.json --port 3333",
+    "start:all": "concurrently \"npm run dev:server\" \"npm run dev\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -19,7 +20,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
+    "scheduler": "^0.23.2",
     "styled-components": "^6.1.13",
+    "use-context-selector": "^2.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -28,6 +31,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "concurrently": "^9.1.0",
     "eslint": "^9.14.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
