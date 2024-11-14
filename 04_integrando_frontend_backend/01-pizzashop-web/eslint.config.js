@@ -24,10 +24,7 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'simple-import-sort/imports': 'error',
-      // Espaçamento entre chaves
       'object-curly-spacing': ['error', 'always'],
-      // Espaçamento entre colchetes
-      'array-bracket-spacing': ['error', 'always'],
       semi: ['error', 'never'],
     },
   },
