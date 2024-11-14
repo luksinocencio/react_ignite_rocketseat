@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
@@ -44,7 +45,7 @@ export function SignUp() {
   }
 
   return (
-    <>
+    <Fragment>
       <Helmet title="Cadastro" />
 
       <div className="p-8">
@@ -96,6 +97,6 @@ export function SignUp() {
           </form>
         </div>
       </div>
-    </>
+    </Fragment>
   )
 }
