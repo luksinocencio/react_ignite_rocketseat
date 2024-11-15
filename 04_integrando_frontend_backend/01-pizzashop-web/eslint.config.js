@@ -26,6 +26,7 @@ export default tseslint.config(
       'simple-import-sort/imports': 'error',
       'object-curly-spacing': ['error', 'always'],
       semi: ['error', 'never'],
+      'react-refresh/only-export-components': ['error', 'never'],
     },
   },
 )
