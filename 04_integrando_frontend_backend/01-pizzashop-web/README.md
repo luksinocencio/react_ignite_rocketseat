@@ -20,3 +20,9 @@ Não esquecer de criar um arquivo `.env.local`
 VITE_API_URL="http://localhost:3333"
 VITE_ENABLE_API_DELAY=true
 ```
+
+```
+- Local state (useState)
+- Global state (zustand, redux, jotai)
+- HTTP state (Dados HTTP)
+```
