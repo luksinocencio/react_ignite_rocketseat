@@ -13,3 +13,10 @@ bun dev
 ```
 npx shadcn@latest add nome_do_componente
 ```
+
+Não esquecer de criar um arquivo `.env.local`
+
+```
+VITE_API_URL="http://localhost:3333"
+VITE_ENABLE_API_DELAY=true
+```

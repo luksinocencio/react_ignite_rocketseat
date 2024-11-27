@@ -1,5 +1,9 @@
 /* eslint-disable drizzle/enforce-delete-with-where */
 
+import { faker } from '@faker-js/faker'
+import { createId } from '@paralleldrive/cuid2'
+import chalk from 'chalk'
+import { db } from './connection'
 import {
   authLinks,
   evaluations,
@@ -8,11 +12,7 @@ import {
   restaurants,
   users,
 } from './schema'
-import { faker } from '@faker-js/faker'
-import { db } from './connection'
-import chalk from 'chalk'
 import { orderItems } from './schema/order-items'
-import { createId } from '@paralleldrive/cuid2'
 
 /**
  * Reset database
@@ -55,7 +55,7 @@ const [manager] = await db
   .insert(users)
   .values({
     name: faker.person.fullName(),
-    email: 'diego.schell.f@gmail.com',
+    email: 'luksinocencio@gmail.com',
     role: 'manager',
   })
   .returning()
@@ -89,7 +89,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -101,7 +101,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -113,7 +113,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -125,7 +125,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -137,7 +137,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -149,7 +149,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -161,7 +161,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -173,7 +173,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -185,7 +185,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        }),
+        })
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -208,7 +208,7 @@ for (let i = 0; i < 200; i++) {
 
   let totalInCents = 0
 
-  orderProducts.forEach((orderProduct) => {
+  orderProducts.forEach(orderProduct => {
     const quantity = faker.number.int({
       min: 1,
       max: 3,
