@@ -1,12 +1,9 @@
 {
-  "arrowParens": "always",
-  "bracketSameLine": true,
-  "bracketSpacing": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "printWidth": 120,
+  "printWidth": 80,
   "tabWidth": 2,
   "semi": false,
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "pluginSearchDirs": false
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
 }

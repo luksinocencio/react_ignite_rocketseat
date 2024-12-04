@@ -4,18 +4,28 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { getManagedRestaurant, GetManagerRestaurantResponse } from '@/api/get-managed-restaurant'
+import {
+  getManagedRestaurant,
+  GetManagerRestaurantResponse,
+} from '@/api/get-managed-restaurant'
 import { updateProfile } from '@/api/update-profile'
 
 import { Button } from './ui/button'
-import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Textarea } from './ui/textarea'
 
 const storeProfileSchema = z.object({
   name: z.string().min(1),
-  description: z.string(),
+  description: z.string().nullable(),
 })
 
 type StoreProfileSchema = z.infer<typeof storeProfileSchema>
@@ -41,12 +51,35 @@ export function StoreProfileDialog() {
     },
   })
 
+  function updateManagedRestaurantCacche({
+    name,
+    description,
+  }: StoreProfileSchema) {
+    const cached = queryClient.getQueryData<GetManagerRestaurantResponse>([
+      'managed-restaurant',
+    ])
+
+    if (cached) {
+      queryClient.setQueryData<GetManagerRestaurantResponse>(
+        ['managed-restaurant'],
+        { ...cached, name, description },
+      )
+    }
+
+    return { cached }
+  }
+
   const { mutateAsync: updateProfileFn } = useMutation({
     mutationFn: updateProfile,
-    onSuccess(_, { name, description }) {
-      const cached = queryClient.getQueryData<GetManagerRestaurantResponse>(['managed-restaurant'])
-      if (cached) {
-        queryClient.setQueryData<GetManagerRestaurantResponse>(['managed-restaurant'], { ...cached, name, description })
+    onMutate({ name, description }) {
+      const { cached } = updateManagedRestaurantCacche({ name, description })
+      return { previousProfile: cached }
+    },
+    onError(_, __, context) {
+      // context são informações que consigo compartilhar entre contexts de um onMutate e um onError
+      // Aqui eu poderia usar o context para reverter a mutação
+      if (context?.previousProfile) {
+        updateManagedRestaurantCacche(context.previousProfile)
       }
     },
   })
@@ -68,7 +101,9 @@ export function StoreProfileDialog() {
     <DialogContent>
       <DialogHeader>
         <DialogTitle>Perfil da loja</DialogTitle>
-        <DialogDescription>Atualize as informações do seu estabelecimento visíveis ao seu cliente</DialogDescription>
+        <DialogDescription>
+          Atualize as informações do seu estabelecimento visíveis ao seu cliente
+        </DialogDescription>
       </DialogHeader>
       <form onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="space-y-4 py-4">
@@ -82,7 +117,11 @@ export function StoreProfileDialog() {
             <Label className="text-right" htmlFor="description">
               Descrição
             </Label>
-            <Textarea className="col-span-3" id="description" {...register('description')} />
+            <Textarea
+              className="col-span-3"
+              id="description"
+              {...register('description')}
+            />
           </div>
         </div>
         <DialogFooter>
