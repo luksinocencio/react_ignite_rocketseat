@@ -1,6 +1,24 @@
-import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-export function OrderDetails() {
+import {
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+
+export interface OrderDetailsProps {
+  orderId: string
+}
+
+export function OrderDetails({ orderId }: OrderDetailsProps) {
   return (
     <DialogContent>
       <DialogHeader>
@@ -15,24 +33,34 @@ export function OrderDetails() {
               <TableCell className="flex justify-end">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-slate-400" />
-                  <span className="font-medium text-muted-foreground">Pendente</span>
+                  <span className="font-medium text-muted-foreground">
+                    Pendente
+                  </span>
                 </div>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="text-muted-foreground">Cliente</TableCell>
-              <TableCell className="flex justify-end">Diego Schell Fernandes</TableCell>
+              <TableCell className="flex justify-end">
+                Diego Schell Fernandes
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="text-muted-foreground">Telefone</TableCell>
-              <TableCell className="flex justify-end">(47) 99999-9999</TableCell>
+              <TableCell className="flex justify-end">
+                (47) 99999-9999
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="text-muted-foreground">E-mail</TableCell>
-              <TableCell className="flex justify-end">diego@rocketseat.com.br</TableCell>
+              <TableCell className="flex justify-end">
+                diego@rocketseat.com.br
+              </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="text-muted-foreground">Realizado há</TableCell>
+              <TableCell className="text-muted-foreground">
+                Realizado há
+              </TableCell>
               <TableCell className="flex justify-end">há 3 minutos</TableCell>
             </TableRow>
           </TableBody>
@@ -63,7 +91,9 @@ export function OrderDetails() {
           <TableFooter>
             <TableRow>
               <TableCell colSpan={3}>Total do pedido</TableCell>
-              <TableCell className="text-right font-medium">R$ 259,60</TableCell>
+              <TableCell className="text-right font-medium">
+                R$ 259,60
+              </TableCell>
             </TableRow>
           </TableFooter>
         </Table>
