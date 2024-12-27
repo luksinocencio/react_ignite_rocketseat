@@ -11,7 +11,7 @@ bun dev
 ### Para adicionar um novo component
 
 ```
-npx shadcn@latest add nome_do_componente
+pnpm dlx shadcn@latest add nome_do_componente
 ```
 
 Não esquecer de criar um arquivo `.env.local`
