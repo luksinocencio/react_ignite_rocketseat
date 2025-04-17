@@ -1,8 +1,8 @@
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { defineConfig } from 'vite'
+import { defineConfig, UserConfig } from 'vite'
+import { InlineConfig } from 'vitest/node'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -10,4 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  test: {
+    globals: true,
+  },
+} as UserConfig & {
+  test: InlineConfig
 })
