@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "pnpm playwright test --ui"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
